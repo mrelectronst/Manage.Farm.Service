@@ -1,13 +1,27 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Manage.Farm.Service.API.Controllers.Request;
+using Manage.Farm.Service.API.Facade.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Manage.Farm.Service.API.Controllers;
 
 public class AnimalController : BaseController
 {
-    public AnimalController()
-    {
-        
-    }
-}
+    private readonly IAnimalFacade _animalFacade;
 
+    public AnimalController(IAnimalFacade animalFacade)
+    {
+        _animalFacade = animalFacade;
+    }
+
+    [HttpGet("animals")]
+    public async Task<JsonResult> List() =>
+        JsonResult(await _animalFacade.List());
+
+    [HttpPost("animal")]
+    public async Task<JsonResult> Add(AnimalRequest request) =>
+        JsonResult(await _animalFacade.Add(request.ToEntity()));
+
+    [HttpDelete("animal")]
+    public async Task<JsonResult> Delete(Guid id) =>
+        JsonResult(await _animalFacade.Delete(id));
+}

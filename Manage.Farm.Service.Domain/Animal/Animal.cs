@@ -2,7 +2,10 @@
 
 public interface IAnimalService
 {
-
+    Task<List<Animal>> GetAll();
+    Task<Animal> Get(string name);
+    Task<int> Add(Animal obj);
+    Task<int> Delete(Guid id);
 }
 
 public class Animal
@@ -11,7 +14,13 @@ public class Animal
     {
     }
 
-    public Guid Id { get; }
-    public string Name { get; }
-}
+    public Animal(Guid id,
+        string name)
+    {
+        Id = id;
+        Name = name;
+    }
 
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+}

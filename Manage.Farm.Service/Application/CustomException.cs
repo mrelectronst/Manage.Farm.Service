@@ -9,3 +9,11 @@ public class AnimalNotFoundException : BaseException
     {
     }
 }
+
+public class SameAnimalNameFoundException : BaseException
+{
+    public SameAnimalNameFoundException() : base((int)HttpStatusCode.NotFound,
+        "Same Animal Name Found")
+    {
+    }
+}
