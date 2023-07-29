@@ -17,7 +17,8 @@ public class AnimalFacade : IAnimalFacade
 
     public async Task<int> Add(Animal animal)
     {
-        _ = await _animalService.Get(animal.Name).ConfigureAwait(false) ??
+        var foundedAnimal = await _animalService.Get(animal.Name).ConfigureAwait(false);
+        if (foundedAnimal != null)
             throw new SameAnimalNameFoundException();
         return await _animalService.Add(animal);
     }

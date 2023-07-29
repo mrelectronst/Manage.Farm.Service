@@ -15,10 +15,10 @@ public class AnimalService : IAnimalService
         return await context.Animals.ToListAsync();
     }
 
-    public async Task<Animal> Get(string name)
+    public async Task<Animal?> Get(string name)
     {
         await using var context = new ApiContext();
-        return await context.Animals.FindAsync(name);
+        return await context.Animals.FirstOrDefaultAsync(x => x.Name == name);
     }
 
     public async Task<int> Add(Animal obj)
