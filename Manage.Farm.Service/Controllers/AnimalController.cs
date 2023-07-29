@@ -21,7 +21,7 @@ public class AnimalController : BaseController
     public async Task<JsonResult> Add(AnimalRequest request) =>
         JsonResult(await _animalFacade.Add(request.ToEntity()));
 
-    [HttpDelete("animal")]
-    public async Task<JsonResult> Delete(Guid id) =>
-        JsonResult(await _animalFacade.Delete(id));
+    [HttpDelete("animal/{id}")]
+    public async Task<JsonResult> Delete(string id) =>
+        JsonResult(await _animalFacade.Delete(Guid.Parse(id)));
 }
