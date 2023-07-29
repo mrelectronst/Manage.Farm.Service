@@ -3,9 +3,10 @@
 public interface IAnimalService
 {
     Task<List<Animal>> GetAll();
-    Task<Animal> Get(string name);
+    Task<Animal> GetByName(string name);
     Task<int> Add(Animal obj);
     Task<int> Delete(Guid id);
+    Task<Animal?> Get(Guid id);
 }
 
 public class Animal

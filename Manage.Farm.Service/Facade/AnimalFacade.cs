@@ -15,9 +15,11 @@ public class AnimalFacade : IAnimalFacade
 
     public async Task<IEnumerable<Animal>> List() => await _animalService.GetAll();
 
+    public async Task<Animal> Get(Guid id) => await _animalService.Get(id).ConfigureAwait(false);
+
     public async Task<int> Add(Animal animal)
     {
-        var foundedAnimal = await _animalService.Get(animal.Name).ConfigureAwait(false);
+        var foundedAnimal = await _animalService.GetByName(animal.Name).ConfigureAwait(false);
         if (foundedAnimal != null)
             throw new SameAnimalNameFoundException();
         return await _animalService.Add(animal);

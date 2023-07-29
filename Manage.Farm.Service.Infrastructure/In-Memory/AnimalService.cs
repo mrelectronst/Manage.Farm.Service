@@ -15,7 +15,13 @@ public class AnimalService : IAnimalService
         return await context.Animals.ToListAsync();
     }
 
-    public async Task<Animal?> Get(string name)
+    public async Task<Animal?> Get(Guid id)
+    {
+        await using var context = new ApiContext();
+        return await context.Animals.FindAsync(id);
+    }
+
+    public async Task<Animal?> GetByName(string name)
     {
         await using var context = new ApiContext();
         return await context.Animals.FirstOrDefaultAsync(x => x.Name == name);

@@ -17,6 +17,10 @@ public class AnimalController : BaseController
     public async Task<JsonResult> List() =>
         JsonResult(await _animalFacade.List());
 
+    [HttpGet("animal/{id}")]
+    public async Task<JsonResult> Get(string id) =>
+        JsonResult(await _animalFacade.Get(Guid.Parse(id)));
+
     [HttpPost("animal")]
     public async Task<JsonResult> Add(AnimalRequest request) =>
         JsonResult(await _animalFacade.Add(request.ToEntity()));

@@ -7,5 +7,6 @@ namespace Manage.Farm.Service.API.Facade.Interface
         Task<IEnumerable<Animal>> List();
         Task<int> Add(Animal animal);
         Task<int> Delete(Guid id);
+        Task<Animal> Get(Guid id);
     }
 }
