@@ -48,7 +48,7 @@ public class Startup
             swagger.SwaggerDoc("v1", new OpenApiInfo
             {
                 Version = "1.0",
-                Title = "Logistic Order Service V1",
+                Title = "Manage Farm Service V1",
             });
             swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
